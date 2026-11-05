@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #F4F1E9;
+  --bg-secondary: #EDEAE1;
+  --surface: #FFFFFF;
+  --surface-elevated: #FAF9F5;
+
+  /* Typography */
+  --text-primary: #252922;
+  --text-secondary: #65685F;
+  --text-muted: #898A80;
+
+  /* Brand */
+  --brand-primary: #667267;
+  --brand-hover: #505D52;
+  --brand-active: #414C43;
+
+  /* Premium accent */
+  --accent: #B18B58;
+  --accent-hover: #967346;
+
+  /* Borders */
+  --border: #E2DED4;
+  --border-strong: #CBC6BA;
+  --focus-ring: #9AA697;
+
+  /* Feedback */
+  --success-bg: #E7EEE7;
+  --success-text: #42634A;
+  --warning-bg: #F4EBDD;
+  --warning-text: #89632F;
+  --error-bg: #F4E7E3;
+  --error-text: #A34F43;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .font-mono, [data-font-mono] {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom design system utility tokens */
+.bg-canvas-primary { background-color: var(--bg-primary); }
+.bg-canvas-secondary { background-color: var(--bg-secondary); }
+.bg-surface-clean { background-color: var(--surface); }
+.bg-surface-elevated { background-color: var(--surface-elevated); }
+
+.text-main { color: var(--text-primary); }
+.text-subtle { color: var(--text-secondary); }
+.text-muted-tone { color: var(--text-muted); }
+
+.text-brand { color: var(--brand-primary); }
+.bg-brand { background-color: var(--brand-primary); }
+.bg-brand-hover:hover { background-color: var(--brand-hover); }
+
+.text-accent-gold { color: var(--accent); }
+.bg-accent-gold { background-color: var(--accent); }
+.bg-accent-hover:hover { background-color: var(--accent-hover); }
+
+.border-subtle { border-color: var(--border); }
+.border-strong-tone { border-color: var(--border-strong); }
+
+.glass-nav {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
