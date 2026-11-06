@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator, ArrowRight, Receipt, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { formatINR } from '../data/subscriptions';
 
 interface SavingsCalculatorProps {
@@ -7,6 +8,7 @@ interface SavingsCalculatorProps {
 }
 
 export const SavingsCalculator: React.FC<SavingsCalculatorProps> = ({ onOpenAuth }) => {
+  const shouldReduceMotion = useReducedMotion();
   const [subCount, setSubCount] = useState<number>(8);
   const [avgCostINR, setAvgCostINR] = useState<number>(1400);
   const [businessPercent, setBusinessPercent] = useState<number>(60);
@@ -29,7 +31,13 @@ export const SavingsCalculator: React.FC<SavingsCalculatorProps> = ({ onOpenAuth
   return (
     <section className="py-24 bg-[#F4F1E9] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto rounded-3xl p-8 sm:p-12 bg-[#252922] text-[#FAF9F5] shadow-2xl border border-[#667267]/30 relative overflow-hidden">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.4 }}
+          className="max-w-4xl mx-auto rounded-3xl p-8 sm:p-12 bg-[#252922] text-[#FAF9F5] shadow-2xl border border-[#667267]/30 relative overflow-hidden"
+        >
           {/* Subtle warm accent aura */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-[#B18B58]/15 blur-3xl pointer-events-none" />
 
@@ -161,7 +169,7 @@ export const SavingsCalculator: React.FC<SavingsCalculatorProps> = ({ onOpenAuth
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

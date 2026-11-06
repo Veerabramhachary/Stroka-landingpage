@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, CheckCircle2, Lock, FileCheck2, IndianRupee, Layers } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { formatINR } from '../data/subscriptions';
 
 interface PrivacyDoctrineProps {
@@ -7,6 +8,8 @@ interface PrivacyDoctrineProps {
 }
 
 export const PrivacyDoctrine: React.FC<PrivacyDoctrineProps> = ({ onOpenAuth }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section id="privacy" className="py-24 bg-[#252922] text-[#FAF9F5] relative overflow-hidden transition-colors">
       {/* Background warm light reflection */}
@@ -15,7 +18,13 @@ export const PrivacyDoctrine: React.FC<PrivacyDoctrineProps> = ({ onOpenAuth }) 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.35 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#B18B58] mb-3">
             <Shield className="w-3.5 h-3.5" />
             <span>Encrypted Data Protection</span>
@@ -29,12 +38,18 @@ export const PrivacyDoctrine: React.FC<PrivacyDoctrineProps> = ({ onOpenAuth }) 
           <p className="text-base sm:text-lg text-[#EDEAE1]/80 leading-relaxed">
             Most finance apps monetize by packaging and selling your personal transaction history to advertisers and credit broker networks. Stroka operates on a straightforward model: we provide clean expense tracking and tax management, protected with robust encryption.
           </p>
-        </div>
+        </motion.div>
 
         {/* 2-Column Split: Image / Visual + Comparative Architecture */}
         <div className="grid lg:grid-cols-12 gap-12 items-center mb-16">
           {/* Left Column: Sculpture concept card */}
-          <div className="lg:col-span-5 relative">
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.35, delay: 0.08 }}
+            className="lg:col-span-5 relative"
+          >
             <div className="relative rounded-3xl overflow-hidden border border-[#667267]/30 shadow-2xl bg-[#414C43] group">
               <img
                 src="/src/assets/images/truvora_security_vault_1793856416433.jpg"
@@ -53,10 +68,16 @@ export const PrivacyDoctrine: React.FC<PrivacyDoctrineProps> = ({ onOpenAuth }) 
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Key Commitments */}
-          <div className="lg:col-span-7 space-y-6">
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.35, delay: 0.14 }}
+            className="lg:col-span-7 space-y-6"
+          >
             <div className="grid sm:grid-cols-2 gap-5">
               {/* Card 1: Traditional Trackers */}
               <div className="p-6 rounded-2xl bg-[#FFFFFF]/5 border border-[#E2DED4]/15">
@@ -124,7 +145,7 @@ export const PrivacyDoctrine: React.FC<PrivacyDoctrineProps> = ({ onOpenAuth }) 
                 Create Encrypted Account
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

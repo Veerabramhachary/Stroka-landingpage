@@ -13,11 +13,25 @@ export default defineConfig(() => {
         name: 'static-assets-server',
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
-            if (req.url === '/robots.txt' || req.url === '/robot.txt') {
+            if (
+              req.url === '/robots.txt' ||
+              req.url === '/robot.txt' ||
+              req.url === '/roboots.txt' ||
+              req.url === '/llms.txt'
+            ) {
               res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-              const robotsPath = path.resolve(__dirname, 'public/robots.txt');
-              if (fs.existsSync(robotsPath)) {
-                res.end(fs.readFileSync(robotsPath, 'utf-8'));
+              const targetFile = req.url === '/llms.txt' ? 'public/llms.txt' : 'public/robots.txt';
+              const filePath = path.resolve(__dirname, targetFile);
+              if (fs.existsSync(filePath)) {
+                res.end(fs.readFileSync(filePath, 'utf-8'));
+                return;
+              }
+            }
+            if (req.url === '/sitemap.xml') {
+              res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+              const sitemapPath = path.resolve(__dirname, 'public/sitemap.xml');
+              if (fs.existsSync(sitemapPath)) {
+                res.end(fs.readFileSync(sitemapPath, 'utf-8'));
                 return;
               }
             }

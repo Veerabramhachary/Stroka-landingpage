@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check, Shield, ArrowRight } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { formatINR } from '../data/subscriptions';
 
 interface PricingSectionProps {
@@ -8,8 +9,9 @@ interface PricingSectionProps {
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) => {
   const [isAnnual, setIsAnnual] = useState<boolean>(true);
+  const shouldReduceMotion = useReducedMotion();
 
-  // INR pricing
+  // INR pricing (Monthly: Starter ₹129, Pro ₹299. Annual includes 2 months free: Starter ₹99/mo, Pro ₹240/mo)
   const starterMonthlyINR = isAnnual ? 99 : 129;
   const starterAnnualTotalINR = isAnnual ? 1188 : 1548;
 
@@ -83,7 +85,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
     <section id="pricing" className="py-24 bg-[#EDEAE1] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.35 }}
+          className="text-center max-w-3xl mx-auto mb-14"
+        >
           <div className="text-xs font-bold uppercase tracking-widest text-[#B18B58] mb-2">
             Transparent Pricing
           </div>
@@ -118,16 +126,22 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
             >
               <span>Annual Billing</span>
               <span className="text-[10px] font-bold text-[#89632F] bg-[#F4EBDD] px-1.5 py-0.5 rounded-md">
-                Save 20%
+                2 Months Free
               </span>
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* 3-Column Pricing Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
           {/* Card 1: Free */}
-          <div className="rounded-3xl p-7 sm:p-8 bg-[#FFFFFF] border border-[#E2DED4] shadow-xs flex flex-col justify-between transition-transform hover:-translate-y-1 duration-200">
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.35, delay: 0.05 }}
+            className="rounded-3xl p-7 sm:p-8 bg-[#FFFFFF] border border-[#E2DED4] shadow-xs flex flex-col justify-between transition-transform hover:-translate-y-1 duration-200"
+          >
             <div>
               <div className="mb-4">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#667267] block mb-1">
@@ -166,14 +180,20 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
             <button
               type="button"
               onClick={() => onOpenAuth('signup')}
-              className="mt-8 w-full py-3 px-4 rounded-xl border border-[#CBC6BA] hover:bg-[#FAF9F5] text-[#252922] font-semibold text-xs transition-colors shadow-2xs text-center"
+              className="mt-8 w-full py-3 px-4 rounded-xl border border-[#CBC6BA] hover:bg-[#FAF9F5] text-[#252922] font-semibold text-xs transition-colors shadow-2xs text-center hover:scale-[1.01] active:scale-[0.99]"
             >
               Start Free
             </button>
-          </div>
+          </motion.div>
 
           {/* Card 2: Starter */}
-          <div className="rounded-3xl p-7 sm:p-8 bg-[#FAF9F5] border border-[#CBC6BA] shadow-xs flex flex-col justify-between transition-transform hover:-translate-y-1 duration-200">
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.35, delay: 0.12 }}
+            className="rounded-3xl p-7 sm:p-8 bg-[#FAF9F5] border border-[#CBC6BA] shadow-xs flex flex-col justify-between transition-transform hover:-translate-y-1 duration-200"
+          >
             <div>
               <div className="mb-4">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#667267] block mb-1">
@@ -197,7 +217,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
                 </div>
                 <div className="text-xs text-[#667267] mt-1 font-mono">
                   {isAnnual
-                    ? `Billed annually (${formatINR(starterAnnualTotalINR)}/yr)`
+                    ? `Billed annually (${formatINR(starterAnnualTotalINR)}/yr · 2 months free)`
                     : 'Billed monthly, cancel anytime'}
                 </div>
               </div>
@@ -217,14 +237,20 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
             <button
               type="button"
               onClick={() => onOpenAuth('signup')}
-              className="mt-8 w-full py-3 px-4 rounded-xl bg-[#667267] hover:bg-[#505D52] active:bg-[#414C43] text-white font-semibold text-xs transition-colors shadow-2xs text-center"
+              className="mt-8 w-full py-3 px-4 rounded-xl bg-[#667267] hover:bg-[#505D52] active:bg-[#414C43] text-white font-semibold text-xs transition-colors shadow-2xs text-center hover:scale-[1.01] active:scale-[0.99]"
             >
               Choose Starter
             </button>
-          </div>
+          </motion.div>
 
           {/* Card 3: Stroka Pro */}
-          <div className="rounded-3xl p-7 sm:p-8 bg-[#252922] text-[#FAF9F5] border-2 border-[#B18B58] shadow-xl flex flex-col justify-between relative overflow-hidden transition-transform hover:-translate-y-1 duration-200">
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.35, delay: 0.18 }}
+            className="rounded-3xl p-7 sm:p-8 bg-[#252922] text-[#FAF9F5] border-2 border-[#B18B58] shadow-xl flex flex-col justify-between relative overflow-hidden transition-transform hover:-translate-y-1 duration-200"
+          >
             {/* Background accent aura */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#B18B58]/15 blur-3xl pointer-events-none" />
 
@@ -251,7 +277,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
                 </div>
                 <div className="text-xs text-[#B18B58] mt-1 font-mono">
                   {isAnnual
-                    ? `Billed annually (${formatINR(proAnnualTotalINR)}/yr)`
+                    ? `Billed annually (${formatINR(proAnnualTotalINR)}/yr · 2 months free)`
                     : 'Billed monthly, cancel anytime'}
                 </div>
               </div>
@@ -271,19 +297,25 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
             <button
               type="button"
               onClick={() => onOpenAuth('signup')}
-              className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#B18B58] hover:bg-[#967346] active:bg-[#89632F] text-white font-semibold text-xs transition-all shadow-md flex items-center justify-center gap-2 group text-center"
+              className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#B18B58] hover:bg-[#967346] active:bg-[#89632F] text-white font-semibold text-xs transition-all shadow-md flex items-center justify-center gap-2 group text-center hover:scale-[1.01] active:scale-[0.99]"
             >
               <span>Upgrade to Stroka Pro</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
-          </div>
+          </motion.div>
         </div>
 
         {/* Reassurance strip */}
-        <div className="mt-12 text-center text-xs text-[#65685F] flex flex-wrap items-center justify-center gap-2">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-20px' }}
+          transition={{ duration: 0.35, delay: 0.2 }}
+          className="mt-12 text-center text-xs text-[#65685F] flex flex-wrap items-center justify-center gap-2"
+        >
           <Shield className="w-4 h-4 text-[#42634A]" />
           <span>GST tax summaries provided · Encrypted in transit & at rest · Cancel anytime with 1 click</span>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

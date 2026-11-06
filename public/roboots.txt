@@ -1,0 +1,75 @@
+# Robots.txt for Stroka
+# Policy: Allow AI crawlers and search engine bots access to the landing page only; restrict all other roots and subpaths.
+
+# OpenAI Crawlers
+User-agent: GPTBot
+Allow: /$
+Disallow: /
+
+User-agent: ChatGPT-User
+Allow: /$
+Disallow: /
+
+# Google AI & Crawlers
+User-agent: Google-Extended
+Allow: /$
+Disallow: /
+
+User-agent: Googlebot
+Allow: /$
+Disallow: /
+
+# Anthropic Claude Crawlers
+User-agent: ClaudeBot
+Allow: /$
+Disallow: /
+
+User-agent: AnthropicAI
+Allow: /$
+Disallow: /
+
+# Perplexity AI Crawler
+User-agent: PerplexityBot
+Allow: /$
+Disallow: /
+
+# Apple AI Crawler
+User-agent: Applebot-Extended
+Allow: /$
+Disallow: /
+
+# Meta / Facebook AI Crawlers
+User-agent: Meta-ExternalAgent
+Allow: /$
+Disallow: /
+
+User-agent: FacebookBot
+Allow: /$
+Disallow: /
+
+# Other Leading AI & Web Crawlers
+User-agent: CCBot
+Allow: /$
+Disallow: /
+
+User-agent: Cohere-ai
+Allow: /$
+Disallow: /
+
+User-agent: Bytespider
+Allow: /$
+Disallow: /
+
+User-agent: Bingbot
+Allow: /$
+Disallow: /
+
+# General Search Engines and all other user-agents
+User-agent: *
+Allow: /$
+Disallow: /
+
+# Sitemaps & AI Context Endpoints
+Sitemap: /sitemap.xml
+# AI Documentation standard (llmstxt.org)
+# See /llms.txt for machine-readable context

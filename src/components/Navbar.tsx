@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, FileSpreadsheet, Shield } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Logo } from './Logo';
 
 interface NavbarProps {
@@ -9,6 +10,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +20,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { label: 'Cockpit', href: '#cockpit' },
+    { label: 'Features', href: '#capabilities' },
+    { label: 'How It Works', href: '#how-it-works' },
+    { label: 'Pricing', href: '#pricing' },
+    { label: 'FAQ', href: '#faq' },
+  ];
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'glass-nav bg-[#F4F1E9]/90 border-b border-[#E2DED4] shadow-xs'
+          ? 'bg-[#F4F1E9]/95 backdrop-blur-md border-b border-[#E2DED4] shadow-xs'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -41,44 +51,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
           </span>
         </a>
 
-        {/* Zone 2: Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#65685F]">
-          <a
-            href="#ledgers"
-            className="hover:text-[#252922] transition-colors whitespace-nowrap shrink-0"
-          >
-            Personal & Business Ledgers
-          </a>
-          <a
-            href="#cockpit"
-            className="hover:text-[#252922] transition-colors whitespace-nowrap shrink-0"
-          >
-            Ledger Cockpit
-          </a>
-          <a
-            href="#tax-management"
-            className="hover:text-[#252922] transition-colors whitespace-nowrap shrink-0"
-          >
-            Tax & GST
-          </a>
-          <a
-            href="#history"
-            className="hover:text-[#252922] transition-colors whitespace-nowrap shrink-0"
-          >
-            Billing History
-          </a>
-          <a
-            href="#pricing"
-            className="hover:text-[#252922] transition-colors whitespace-nowrap shrink-0"
-          >
-            Pricing
-          </a>
-          <a
-            href="#faq"
-            className="hover:text-[#252922] transition-colors whitespace-nowrap shrink-0"
-          >
-            FAQ
-          </a>
+        {/* Zone 2: Navigation Links (Clean & working section anchors only) */}
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-[#65685F]">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-[#252922] transition-colors whitespace-nowrap shrink-0 relative py-1 text-[13px] hover:-translate-y-0.5 duration-150"
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
         {/* Zone 3: Currency indicator + Login + Primary Action */}
@@ -90,16 +73,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
 
           {/* Login Link */}
           <button
+            type="button"
             onClick={() => onOpenAuth('signin')}
             className="hidden sm:inline-block text-xs font-semibold text-[#65685F] hover:text-[#252922] transition-colors px-2 py-1"
           >
             Sign In
           </button>
 
-          {/* Primary Action Button in #667267 Brand Color */}
+          {/* Primary Action Button */}
           <button
+            type="button"
             onClick={() => onOpenAuth('signup')}
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#667267] hover:bg-[#505D52] active:bg-[#414C43] rounded-xl transition-all shadow-xs whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#667267] hover:bg-[#505D52] active:bg-[#414C43] rounded-xl transition-all shadow-xs whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>Start Tracking</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -107,85 +92,70 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
 
           {/* Mobile hamburger */}
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2DED4] text-[#252922]"
-            aria-label="Open navigation menu"
+            className="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2DED4] text-[#252922] hover:bg-[#EDEAE1] transition-colors"
+            aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#F4F1E9] border-b border-[#E2DED4] px-6 py-5 shadow-lg">
-          <div className="flex flex-col gap-3.5 text-sm font-medium text-[#252922] mb-5">
-            <a
-              href="#ledgers"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#B18B58]"
-            >
-              Personal & Business Ledgers
-            </a>
-            <a
-              href="#cockpit"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#B18B58]"
-            >
-              Interactive Cockpit
-            </a>
-            <a
-              href="#tax-management"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#B18B58]"
-            >
-              Tax & GST Management
-            </a>
-            <a
-              href="#history"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#B18B58]"
-            >
-              Billing History
-            </a>
-            <a
-              href="#pricing"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#B18B58]"
-            >
-              Pricing
-            </a>
-            <a
-              href="#faq"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#B18B58]"
-            >
-              FAQ
-            </a>
-          </div>
+      {/* Animated Mobile Menu Drawer using Motion */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:hidden bg-[#F4F1E9] border-b border-[#E2DED4] overflow-hidden shadow-lg"
+          >
+            <div className="px-6 py-5">
+              <div className="flex flex-col gap-3 text-sm font-medium text-[#252922] mb-5">
+                {navLinks.map((link, idx) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.04, duration: 0.18 }}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="py-1.5 hover:text-[#B18B58] transition-colors border-b border-[#E2DED4]/50 flex items-center justify-between"
+                  >
+                    <span>{link.label}</span>
+                    <span className="text-xs text-[#898A80] font-mono">→</span>
+                  </motion.a>
+                ))}
+              </div>
 
-          <div className="pt-4 border-t border-[#E2DED4] flex items-center gap-3">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAuth('signin');
-              }}
-              className="flex-1 py-2.5 text-xs font-semibold text-[#252922] bg-[#EDEAE1] rounded-xl border border-[#E2DED4]"
-            >
-              Sign In
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAuth('signup');
-              }}
-              className="flex-1 py-2.5 text-xs font-semibold text-white bg-[#667267] rounded-xl"
-            >
-              Start Free Tracking
-            </button>
-          </div>
-        </div>
-      )}
+              <div className="pt-3 border-t border-[#E2DED4] flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenAuth('signin');
+                  }}
+                  className="flex-1 py-2.5 text-xs font-semibold text-[#252922] bg-[#EDEAE1] hover:bg-[#FAF9F5] rounded-xl border border-[#E2DED4] transition-colors"
+                >
+                  Sign In
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenAuth('signup');
+                  }}
+                  className="flex-1 py-2.5 text-xs font-semibold text-white bg-[#667267] hover:bg-[#505D52] rounded-xl transition-colors shadow-2xs"
+                >
+                  Start Free Tracking
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

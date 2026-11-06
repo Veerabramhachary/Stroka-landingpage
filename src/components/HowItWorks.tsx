@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PlusCircle, Bell, Receipt, Check, ArrowRight, Layers } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface HowItWorksProps {
   onOpenAuth: (mode?: 'signup' | 'signin') => void;
@@ -7,6 +8,7 @@ interface HowItWorksProps {
 
 export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenAuth }) => {
   const [activeStep, setActiveStep] = useState<number>(1);
+  const shouldReduceMotion = useReducedMotion();
 
   const steps = [
     {
@@ -45,7 +47,13 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenAuth }) => {
     <section id="how-it-works" className="py-24 bg-[#EDEAE1] border-t border-[#E2DED4] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.35 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <div className="text-xs font-bold uppercase tracking-widest text-[#B18B58] mb-2">
             Simplicity at its Core
           </div>
@@ -55,7 +63,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenAuth }) => {
           <p className="text-base sm:text-lg text-[#65685F] leading-relaxed font-normal">
             No invasive bank credentials, no telemetry selling. Just clear financial organization with tax intelligence.
           </p>
-        </div>
+        </motion.div>
 
         {/* 3 Step Connected Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -66,13 +74,17 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenAuth }) => {
             const Icon = step.icon;
             const isSelected = activeStep === index + 1;
             return (
-              <div
+              <motion.div
                 key={step.number}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.35, delay: index * 0.1 }}
                 onClick={() => setActiveStep(index + 1)}
                 className={`relative rounded-3xl p-8 bg-[#FFFFFF] border transition-all cursor-pointer ${
                   isSelected
-                    ? 'border-[#667267] shadow-lg ring-1 ring-[#667267]/20'
-                    : 'border-[#E2DED4] hover:border-[#CBC6BA] shadow-2xs'
+                    ? 'border-[#667267] shadow-lg ring-1 ring-[#667267]/20 scale-[1.01]'
+                    : 'border-[#E2DED4] hover:border-[#CBC6BA] shadow-2xs hover:-translate-y-0.5'
                 }`}
               >
                 {/* Step Header */}
@@ -96,21 +108,27 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenAuth }) => {
                   <Check className="w-4 h-4 text-[#42634A] shrink-0 mt-0.5" />
                   <span>{step.detail}</span>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
         {/* Bottom Action */}
-        <div className="mt-14 text-center">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.35, delay: 0.25 }}
+          className="mt-14 text-center"
+        >
           <button
             onClick={() => onOpenAuth('signup')}
-            className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold text-white bg-[#667267] hover:bg-[#505D52] rounded-xl transition-all shadow-xs"
+            className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold text-white bg-[#667267] hover:bg-[#505D52] rounded-xl transition-all shadow-xs hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>Set Up Your Dual Ledgers</span>
             <ArrowRight className="w-4 h-4" />
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -29,32 +29,32 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAuth }) => {
           {/* Navigation Links */}
           <div className="md:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#252922]">
-              Ledger Platform
+              Navigation
             </h4>
             <ul className="space-y-2 text-xs text-[#65685F]">
-              <li>
-                <a href="#ledgers" className="hover:text-[#667267] transition-colors">
-                  Personal & Business Ledgers
-                </a>
-              </li>
               <li>
                 <a href="#cockpit" className="hover:text-[#667267] transition-colors">
                   Interactive Cockpit
                 </a>
               </li>
               <li>
-                <a href="#tax-management" className="hover:text-[#667267] transition-colors">
-                  Tax Summaries & Invoices
+                <a href="#capabilities" className="hover:text-[#667267] transition-colors">
+                  Features & Bento
                 </a>
               </li>
               <li>
-                <a href="#history" className="hover:text-[#667267] transition-colors">
-                  Billing History & Invoices
+                <a href="#how-it-works" className="hover:text-[#667267] transition-colors">
+                  How It Works
                 </a>
               </li>
               <li>
                 <a href="#pricing" className="hover:text-[#667267] transition-colors">
-                  Pricing & Pro Upgrade
+                  Pricing Plans
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="hover:text-[#667267] transition-colors">
+                  Frequently Asked Questions
                 </a>
               </li>
             </ul>
@@ -105,7 +105,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAuth }) => {
             <a href="#pricing" className="hover:text-[#252922] transition-colors">
               Terms of Service
             </a>
-            <a href="#tax-management" className="hover:text-[#252922] transition-colors">
+            <a href="#cockpit" className="hover:text-[#252922] transition-colors">
               Tax & Invoicing Guidelines
             </a>
           </div>

@@ -1,0 +1,54 @@
+# Stroka — Financial Ledger & Subscription Intelligence (INR)
+
+> Stroka is a privacy-first expense, subscription, and tax management ledger built specifically for individuals, freelancers, and businesses in India. It partitions personal living subscriptions from corporate software expenses, tracks 18% GST deductibility, and exports Chartered Accountant-ready Tax Summaries in native Indian Rupees (₹ INR).
+
+## Core Capabilities
+
+- **Personal & Business Dual Ledgers**: Strictly separates personal lifestyle subscriptions (Netflix, Spotify, gym) from business SaaS tools (AWS, Google Workspace, GitHub).
+- **Tax Summary Engine**: Generates comprehensive Tax Summaries covering up to 400 days per request and up to 20,000 tagged rows per report. Documents 18% GST rates, vendor GSTIN verification, and HSN/SAC code categorizations.
+- **Smart Renewal Reminders**: Proactive alerts (1, 3, 7, or 14 days in advance) before auto-debits execute on credit cards or UPI AutoPay.
+- **Past Invoice & Billing History**: Historical archive of invoice numbers, dates, payment modes, and receipts.
+- **Data Protection**: Encrypted in transit (TLS 1.3) and encrypted at rest (AES-256). Zero advertising telemetry; financial patterns are never packaged or brokered.
+
+## Plans & Pricing (in ₹ INR)
+
+- **Free Tier (₹0 forever)**:
+  - Track up to 10 active subscriptions in INR
+  - Personal and Business ledger partitioning
+  - 10 CSV exports per month
+  - Standard 3-day renewal alerts
+  - Monthly expense summary report
+  - Encrypted in transit (TLS 1.3) and at rest (AES-256)
+
+- **Starter Tier (₹99/mo billed annually with 2 months free, or ₹129/mo billed monthly)**:
+  - *In addition to Free, you'll get:*
+  - Track up to 50 subscriptions (40 more than Free)
+  - Expense vs subscription breakdown
+  - Custom categories and renewal reminders
+  - Full billing history & past invoice registry
+  - 100 CSV exports per month (10x Free)
+  - Basic PDF exports per month
+
+- **Stroka Pro Tier (₹240/mo billed annually with 2 months free, or ₹299/mo billed monthly)**:
+  - *In addition to Starter, you'll get:*
+  - Unlimited personal & business subscriptions
+  - Tax Summary Engine (Up to 400 days per request)
+  - High capacity: Up to 20,000 tagged rows per summary
+  - 18% GST expense breakdown & Tax Summaries
+  - HSN/SAC code categorization & invoice attachment
+  - Chartered Accountant-ready PDF & CSV tax exports
+  - Customizable alert lead times (1, 3, 7, or 14 days)
+  - Advanced charts
+  - 1,000 CSV exports per month
+  - Advanced PDF exports per month
+  - Saved views (coming soon)
+  - Monthly report (coming soon)
+  - XLSX exports (coming soon)
+
+## Technical Architecture
+
+- Currency: Indian Rupee (`INR`, symbol `₹`)
+- Front-end: React 19, TypeScript, Tailwind CSS, Motion (Framer Motion v12)
+- Security: TLS 1.3 in transit, AES-256 at rest, no bank credentials stored
+- Contact: support@stroka.in
+- Canonical URL: https://truvora-sigma.vercel.app/
