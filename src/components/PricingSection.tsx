@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Shield, ArrowRight, Sparkles } from 'lucide-react';
+import { Check, Shield, ArrowRight } from 'lucide-react';
 import { formatINR } from '../data/subscriptions';
 
 interface PricingSectionProps {
@@ -26,14 +26,12 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
   ];
 
   const starterFeatures = [
-    'Track up to 50 subscriptions',
-    'Personal and Business ledger partitioning',
+    'Track up to 50 subscriptions (40 more than Free)',
     'Expense vs subscription breakdown',
     'Custom categories and renewal reminders',
     'Full billing history & past invoice registry',
-    '100 CSV exports per month',
+    '100 CSV exports per month (10x Free)',
     'Basic PDF exports per month',
-    'Encrypted in transit (TLS 1.3) and at rest (AES-256)',
   ];
 
   const proFeatures = [
@@ -42,7 +40,6 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
     'High capacity: Up to 20,000 tagged rows per summary',
     '18% GST expense breakdown & Tax Summaries',
     'HSN/SAC code categorization & invoice attachment',
-    'Full billing history and past invoice registry',
     'Chartered Accountant-ready PDF & CSV tax exports',
     'Customizable alert lead times (1, 3, 7, or 14 days)',
     'Advanced charts',
@@ -156,8 +153,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
               </div>
 
               {/* Feature Checklist */}
-              <div className="space-y-3 pt-6 border-t border-[#E2DED4] text-xs text-[#65685F]">
-                {freeFeatures.map((feat) => renderFeatureItem(feat, false))}
+              <div className="pt-6 border-t border-[#E2DED4]">
+                <div className="text-xs font-bold text-[#252922] mb-3">
+                  Everything included in Free:
+                </div>
+                <div className="space-y-3 text-xs text-[#65685F]">
+                  {freeFeatures.map((feat) => renderFeatureItem(feat, false))}
+                </div>
               </div>
             </div>
 
@@ -200,9 +202,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
                 </div>
               </div>
 
-              {/* Feature Checklist */}
-              <div className="space-y-3 pt-6 border-t border-[#E2DED4] text-xs text-[#65685F]">
-                {starterFeatures.map((feat) => renderFeatureItem(feat, false))}
+              {/* Feature Checklist with In Addition header */}
+              <div className="pt-6 border-t border-[#E2DED4]">
+                <div className="text-xs font-bold text-[#252922] mb-3 flex items-center gap-1.5">
+                  <span className="text-[#667267]">★</span>
+                  <span>In addition to Free, you'll get:</span>
+                </div>
+                <div className="space-y-3 text-xs text-[#65685F]">
+                  {starterFeatures.map((feat) => renderFeatureItem(feat, false))}
+                </div>
               </div>
             </div>
 
@@ -215,24 +223,22 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
             </button>
           </div>
 
-          {/* Card 3: Stroka Pro (Featured) */}
+          {/* Card 3: Stroka Pro */}
           <div className="rounded-3xl p-7 sm:p-8 bg-[#252922] text-[#FAF9F5] border-2 border-[#B18B58] shadow-xl flex flex-col justify-between relative overflow-hidden transition-transform hover:-translate-y-1 duration-200">
             {/* Background accent aura */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#B18B58]/15 blur-3xl pointer-events-none" />
 
             <div>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#B18B58] uppercase tracking-widest mb-1">
-                    <Sparkles className="w-3.5 h-3.5" /> Recommended for Businesses & Freelancers
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    Stroka Pro
-                  </h3>
-                  <p className="text-xs text-[#CBC6BA] mt-1 leading-relaxed">
-                    For professionals, agencies, and businesses managing GST & taxes.
-                  </p>
-                </div>
+              <div className="mb-4">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#B18B58] block mb-1">
+                  Business & Scale
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  Stroka Pro
+                </h3>
+                <p className="text-xs text-[#CBC6BA] mt-1 leading-relaxed">
+                  For businesses, freelancers, and agencies managing GST & CA tax filing.
+                </p>
               </div>
 
               {/* Price display */}
@@ -250,9 +256,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
                 </div>
               </div>
 
-              {/* Feature Checklist */}
-              <div className="space-y-3 pt-6 border-t border-white/10 text-xs text-[#EDEAE1]">
-                {proFeatures.map((feat) => renderFeatureItem(feat, true))}
+              {/* Feature Checklist with In Addition header */}
+              <div className="pt-6 border-t border-white/10">
+                <div className="text-xs font-bold text-[#FAF9F5] mb-3 flex items-center gap-1.5">
+                  <span className="text-[#B18B58]">★</span>
+                  <span>In addition to Starter, you'll get:</span>
+                </div>
+                <div className="space-y-3 text-xs text-[#EDEAE1]">
+                  {proFeatures.map((feat) => renderFeatureItem(feat, true))}
+                </div>
               </div>
             </div>
 

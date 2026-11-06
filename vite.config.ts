@@ -10,7 +10,7 @@ export default defineConfig(() => {
       react(),
       tailwindcss(),
       {
-        name: 'robots-txt-server',
+        name: 'static-assets-server',
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
             if (req.url === '/robots.txt' || req.url === '/robot.txt') {
@@ -18,6 +18,14 @@ export default defineConfig(() => {
               const robotsPath = path.resolve(__dirname, 'public/robots.txt');
               if (fs.existsSync(robotsPath)) {
                 res.end(fs.readFileSync(robotsPath, 'utf-8'));
+                return;
+              }
+            }
+            if (req.url === '/favicon.svg' || req.url === '/logo.svg') {
+              res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
+              const svgPath = path.resolve(__dirname, `public${req.url}`);
+              if (fs.existsSync(svgPath)) {
+                res.end(fs.readFileSync(svgPath, 'utf-8'));
                 return;
               }
             }

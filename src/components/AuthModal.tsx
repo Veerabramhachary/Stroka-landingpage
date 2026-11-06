@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Shield, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -94,9 +95,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           <div>
             {/* Header */}
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 rounded bg-[#667267] flex items-center justify-center">
-                <span className="w-2 h-2 rounded-full bg-[#FAF9F5]" />
-              </div>
+              <Logo size={24} />
               <span className="text-xs font-bold tracking-widest uppercase text-[#B18B58]">
                 Stroka INR Ledger
               </span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface FooterProps {
   onOpenAuth: (mode?: 'signup' | 'signin') => void;
@@ -13,9 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAuth }) => {
           {/* Brand Column */}
           <div className="md:col-span-5 space-y-4">
             <a href="#" className="flex items-center gap-2.5 text-[#252922]">
-              <div className="w-6 h-6 rounded-lg bg-[#667267] flex items-center justify-center">
-                <span className="w-2 h-2 rounded-full bg-[#FAF9F5]" />
-              </div>
+              <Logo size={24} />
               <span className="text-lg font-bold tracking-tight">STROKA</span>
             </a>
             <p className="text-xs sm:text-sm text-[#65685F] max-w-sm leading-relaxed">

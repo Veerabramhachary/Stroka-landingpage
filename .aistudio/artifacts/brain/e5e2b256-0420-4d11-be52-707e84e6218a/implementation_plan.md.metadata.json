@@ -1,6 +1,6 @@
 {
-  "summary": "Architecture and implementation plan for high-performance transaction animations using Motion across mobile and desktop. Covers an interactive transaction creation flow, animated list insertion, live Tax Summary recalculation, and 60fps GPU compositor optimizations with prefers-reduced-motion support.",
-  "updatedAt": "2026-11-05T10:31:27.669565882Z",
+  "summary": "Explanation of why Pro was initially marked Recommended (matching the uploaded screenshot) and an implementation plan to adjust the card prominence—proposing neutral card weighting or shifting the badge to Starter.",
+  "updatedAt": "2026-11-06T08:23:33.914309054Z",
   "requestFeedback": true,
   "userFacing": true
 }

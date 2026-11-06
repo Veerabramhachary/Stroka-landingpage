@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight, FileSpreadsheet, Shield } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface NavbarProps {
   onOpenAuth: (mode?: 'signup' | 'signin') => void;
@@ -31,9 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
           href="#"
           className="flex items-center gap-2.5 tracking-tight group whitespace-nowrap shrink-0 text-[#252922]"
         >
-          <div className="w-7 h-7 rounded-lg bg-[#667267] flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
-            <span className="w-2 h-2 rounded-full bg-[#FAF9F5]" />
-          </div>
+          <Logo size={28} className="group-hover:scale-105 transition-transform" />
           <span className="text-xl font-bold tracking-tight text-[#252922]">
             STROKA
           </span>
