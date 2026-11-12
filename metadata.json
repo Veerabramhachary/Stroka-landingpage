@@ -2,5 +2,5 @@
   "name": "Truvora — Private Subscription & Expense Intelligence",
   "description": "Track expenses, income and recurring subscriptions with zero-knowledge privacy and pre-charge alerts before they hit your card.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }
