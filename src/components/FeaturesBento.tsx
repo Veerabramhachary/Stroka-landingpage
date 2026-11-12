@@ -79,7 +79,7 @@ export const FeaturesBento: React.FC<FeaturesBentoProps> = ({ onOpenAuth }) => {
             <div className="px-6 pb-6 pt-0">
               <div className="rounded-2xl overflow-hidden border border-[#E2DED4] shadow-sm relative">
                 <img
-                  src="/src/assets/images/truvora_spend_analytics_1793856416275.jpg"
+                  src="/assets/images/truvora_spend_analytics_1793856416275.jpg"
                   alt="Stroka dual ledger and financial analytics"
                   referrerPolicy="no-referrer"
                   className="w-full h-52 sm:h-64 object-cover object-top group-hover:scale-102 transition-transform duration-500"

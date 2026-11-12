@@ -11,12 +11,18 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
   const [isAnnual, setIsAnnual] = useState<boolean>(true);
   const shouldReduceMotion = useReducedMotion();
 
-  // INR pricing (Monthly: Starter ₹129, Pro ₹299. Annual includes 2 months free: Starter ₹99/mo, Pro ₹240/mo)
-  const starterMonthlyINR = isAnnual ? 99 : 129;
-  const starterAnnualTotalINR = isAnnual ? 1188 : 1548;
+  const annualPaidMonths = 10;
+  const starterMonthlyRateINR = 129;
+  const starterAnnualTotalINR = starterMonthlyRateINR * annualPaidMonths;
+  const starterMonthlyINR = isAnnual
+    ? Math.round(starterAnnualTotalINR / 12)
+    : starterMonthlyRateINR;
 
-  const proMonthlyINR = isAnnual ? 240 : 299;
-  const proAnnualTotalINR = isAnnual ? 2880 : 3588;
+  const proMonthlyRateINR = 299;
+  const proAnnualTotalINR = proMonthlyRateINR * annualPaidMonths;
+  const proMonthlyINR = isAnnual
+    ? Math.round(proAnnualTotalINR / 12)
+    : proMonthlyRateINR;
 
   const freeFeatures = [
     'Track up to 10 active subscriptions in INR',
@@ -213,7 +219,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
                   <span className="text-4xl font-bold text-[#252922]">
                     {formatINR(starterMonthlyINR)}
                   </span>
-                  <span className="text-xs text-[#65685F] font-sans">/ month</span>
+                  <span className="text-xs text-[#65685F] font-sans">
+                    {isAnnual ? '/ month effective' : '/ month'}
+                  </span>
                 </div>
                 <div className="text-xs text-[#667267] mt-1 font-mono">
                   {isAnnual
@@ -273,7 +281,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenAuth }) =>
                   <span className="text-4xl font-bold text-white">
                     {formatINR(proMonthlyINR)}
                   </span>
-                  <span className="text-xs text-[#CBC6BA] font-sans">/ month</span>
+                  <span className="text-xs text-[#CBC6BA] font-sans">
+                    {isAnnual ? '/ month effective' : '/ month'}
+                  </span>
                 </div>
                 <div className="text-xs text-[#B18B58] mt-1 font-mono">
                   {isAnnual

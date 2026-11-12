@@ -110,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAuth }) => {
             className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#E2DED4] shadow-xl bg-[#252922]"
           >
             <img
-              src="/src/assets/images/truvora_app_workspace_1793856417064.jpg"
+              src="/assets/images/truvora_app_workspace_1793856417064.jpg"
               alt="Stroka expense and subscription ledger workspace"
               referrerPolicy="no-referrer"
               className="w-full h-[320px] sm:h-[480px] lg:h-[520px] object-cover object-center opacity-90"

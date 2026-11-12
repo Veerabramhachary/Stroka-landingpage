@@ -52,7 +52,7 @@ export const PrivacyDoctrine: React.FC<PrivacyDoctrineProps> = ({ onOpenAuth }) 
           >
             <div className="relative rounded-3xl overflow-hidden border border-[#667267]/30 shadow-2xl bg-[#414C43] group">
               <img
-                src="/src/assets/images/truvora_security_vault_1793856416433.jpg"
+                src="/assets/images/truvora_security_vault_1793856416433.jpg"
                 alt="Stroka encryption and security architecture"
                 referrerPolicy="no-referrer"
                 className="w-full h-[380px] sm:h-[420px] object-cover group-hover:scale-102 transition-transform duration-500 opacity-90"
