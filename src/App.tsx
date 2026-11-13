@@ -20,7 +20,9 @@ export default function App() {
   const handleOpenAuth = (mode: 'signup' | 'signin' = 'signup') => {
     const envKey = mode === 'signup' ? 'VITE_SIGNUP_URL' : 'VITE_SIGNIN_URL';
     const authUrl =
-      mode === 'signup' ? import.meta.env.VITE_SIGNUP_URL : import.meta.env.VITE_SIGNIN_URL;
+      mode === 'signup'
+        ? import.meta.env.VITE_SIGNUP_URL || 'https://truvora-sigma.vercle.app/auth/sign-up'
+        : import.meta.env.VITE_SIGNIN_URL || 'https://truvora-sigma.vercle.app/auth/sign-in';
 
     if (!authUrl) {
       const message = `${envKey} is not configured. Set it in the environment to enable ${mode}.`;
